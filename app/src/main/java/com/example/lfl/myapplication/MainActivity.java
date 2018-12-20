@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button tv;
     private String s = "123";
     private MessagesEvent messagesEvent;
+    private Intent secIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv.setOnClickListener(this);
         messagesEvent = new MessagesEvent(s);
         EventBus.getDefault().register(this);
+        secIntent = new Intent(this, SecondActivity.class);
+
     }
 
     @Override
@@ -44,18 +47,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this,"Click",Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onClick: ");
                 //onMessageEvent(messagesEvent);
-//                EventBus.getDefault().post(new MessagesEvent("Hello_world!"));
-//                new Runnable(){
-//                    @Override
-//                    public void run() {
-//                        try {
+                EventBus.getDefault().post(new MessagesEvent("Hello_world!"));
+                new Runnable(){
+                    @Override
+                    public void run() {
+                        try {
 //                            SystemClock.sleep(5000);
-//                            EventBus.getDefault().post(new MessagesEvent("Hello_World  !!"));
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }.run();
+//                            startActivity(secIntent);
+                            EventBus.getDefault().post(new MessagesEvent("Hello_World  !!"));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }.run();
 //                new RunTest().start();
                 startActivity(new Intent(this,SecondActivity.class));
                 break;
