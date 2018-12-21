@@ -5,14 +5,19 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.allenliu.badgeview.BadgeFactory;
+import com.allenliu.badgeview.BadgeView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,6 +63,16 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         iv1.setOnClickListener(this);
         iv1.setImageResource(R.mipmap.ic_back_image);
         mainActivityIntent = new Intent(this,MainActivity.class);
+        BadgeFactory.create(this)
+                .setTextColor(Color.WHITE)
+                .setWidthAndHeight(25,25)
+                .setBadgeBackground(Color.RED)
+                .setTextSize(10)
+                .setBadgeGravity(Gravity.RIGHT|Gravity.TOP)
+                .setBadgeCount(20)
+                .setShape(BadgeView.SHAPE_CIRCLE)
+                .setSpace(10,10);
+//                .bind(iv1);
     }
 
     @Override
